@@ -1,0 +1,81 @@
+.app-header {
+  background: #fff;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-block: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1b362c;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.brand img { object-fit: contain; }
+.brand-secondary { color: #67776f; font-weight: 500; }
+
+.app-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.app-nav a {
+  padding: 0.65rem 0.8rem;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+  color: #53615b;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.app-nav a:hover { color: var(--app-accent); background: #f0f6f3; }
+.app-nav a.active { color: var(--app-accent); border-color: var(--app-accent); }
+
+.resource-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-label {
+  margin-bottom: 0.35rem;
+  color: #596f62;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.icon-button { width: 42px; height: 42px; flex: 0 0 42px; padding: 0; }
+.record-count { color: #65736c; font-size: 0.875rem; }
+.status-message { padding: 3rem 0; color: #65736c; border-top: 1px solid var(--app-border); }
+.table-responsive { border-block: 1px solid var(--app-border); }
+.resource-table { margin: 0; --bs-table-bg: #fff; --bs-table-border-color: var(--app-border); }
+.resource-table th { background: #eaf0ed; color: #475e51; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.resource-table td, .resource-table th { padding: 1rem; }
+.resource-table td { max-width: 360px; min-width: 100px; overflow-wrap: anywhere; font-size: 0.9rem; }
+.resource-table tbody tr:last-child td { border-bottom: 0; }
+.pagination-controls { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem; }
+.skip-link { position: absolute; top: -80px; left: 1rem; z-index: 10; padding: 0.75rem; background: #fff; }
+.skip-link:focus { top: 0.5rem; }
+
+@media (max-width: 767px) {
+  .header-inner { gap: 0.75rem; }
+  .app-nav { width: 100%; }
+  .app-nav a { padding: 0.6rem; }
+  .resource-table td, .resource-table th { padding: 0.8rem; }
+  h1 { font-size: 1.75rem; }
+}
