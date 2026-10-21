@@ -1,16 +1,54 @@
-# React + Vite
+# OctoFit Tracker Presentation Tier
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+React 19, Vite, React Router, and Bootstrap power the activities, leaderboard,
+teams, users, and workouts views. The Node.js API must run on port 8000.
 
-Currently, two official plugins are available:
+## Environment
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+For Codespaces, `VITE_CODESPACE_NAME` must be defined in
+`octofit-tracker/frontend/.env.local` or supplied to the Vite process:
 
-## React Compiler
+```dotenv
+VITE_CODESPACE_NAME=your-codespace-name
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Use the value of the Codespaces `CODESPACE_NAME` environment variable, not a URL.
+Vite does not automatically expose `CODESPACE_NAME` to browser code. The app reads
+`import.meta.env.VITE_CODESPACE_NAME` and requests
+`https://<codespace-name>-8000.app.github.dev/api/<component>/`.
+Only public configuration belongs in `VITE_` variables; never put secrets here.
+Restart Vite after changing `.env.local`. Production builds capture the value at
+build time, so rebuild when it changes.
 
-## Expanding the Oxlint configuration
+For local development, leave `VITE_CODESPACE_NAME` unset or blank. Requests safely
+fall back to `http://localhost:8000/api/<component>/`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Run
+
+From the repository root:
+
+```bash
+npm install --prefix octofit-tracker/frontend
+npm run dev --prefix octofit-tracker/frontend -- --host 0.0.0.0 --port 5173 --strictPort
+```
+
+In Codespaces, the variable can also be passed directly:
+
+```bash
+VITE_CODESPACE_NAME="$CODESPACE_NAME" npm run dev --prefix octofit-tracker/frontend -- --host 0.0.0.0 --port 5173 --strictPort
+```
+
+Visit `http://localhost:5173` or the forwarded Codespaces port 5173. Keep API port
+8000 accessible to the browser. MongoDB remains private on port 27017.
+
+## API Responses
+
+Each view accepts an array or a paginated object with `results`, `count`, `next`,
+and `previous`. Pagination controls follow the API's page links. Loading, empty,
+failed requests, and retry states are handled consistently. Populated user/team
+references display names, while unpopulated references display their IDs.
+
+```bash
+npm run build --prefix octofit-tracker/frontend
+npm run lint --prefix octofit-tracker/frontend
+```
