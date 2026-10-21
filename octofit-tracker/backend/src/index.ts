@@ -1,6 +1,6 @@
 import express from 'express';
 import './config/database';
-import { apiBaseUrl, frontendOrigin } from './config/api';
+import { apiBaseUrl, frontendOrigin } from './server';
 import apiRouter from './routes';
 
 const app = express();
